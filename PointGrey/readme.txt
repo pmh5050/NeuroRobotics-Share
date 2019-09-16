@@ -1,0 +1,1 @@
+Point Grey camera를 이용한 OpenCV 기본 프로그램
