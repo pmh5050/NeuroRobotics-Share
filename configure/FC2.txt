@@ -1,0 +1,20 @@
+add path
+C:\Program Files\Point Grey Research\FlyCapture2\bin64\vs2015
+$(FC2PATH)\vs2015
+
+PATH=%PATH%;$(FC2PATH)\vs2015
+
+include
+C:\Program Files\Point Grey Research\FlyCapture2\include
+$(FC2PATH)\..\include
+
+add lib path
+C:\Program Files\Point Grey Research\FlyCapture2\lib64\vs2015
+$(FC2PATH)\..\lib64\vs2015
+
+FlyCapture2_v140.dll
+
+FlyCapture2d_v140.dll
+
+FC2PATH - C:\Program Files\Point Grey Research\FlyCapture2\bin64
+

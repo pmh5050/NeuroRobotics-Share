@@ -1,0 +1,1 @@
+PATH=%PATH%;$(OpenCV)\opencv_build-3.4.7\install\x64\vc15\bin;$(FC2PATH)\vs2015;

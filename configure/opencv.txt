@@ -1,0 +1,21 @@
+add path
+C:\opencv\opencv_build-3.4.7\install\x64\vc15\bin
+$(OpenCV)\opencv_build-3.4.7\install\x64\vc15\bin
+
+PATH=%PATH%;$(OpenCV)\opencv_build-3.4.7\install\x64\vc15\bin
+
+include
+C:\opencv\opencv_build-3.4.7\install\include
+$(OpenCV)\opencv_build-3.4.7\install\include
+
+add lib path
+C:\opencv\opencv_build-3.4.7\install\x64\vc15\lib
+$(OpenCV)\opencv_build-3.4.7\install\x64\vc15\lib
+
+opencv_world347.lib
+opencv_aruco347.lib
+opencv_calib3d347.lib
+
+opencv_world347d.lib
+opencv_aruco347d.lib
+opencv_calib3d347d.lib
