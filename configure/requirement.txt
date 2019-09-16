@@ -1,0 +1,7 @@
+FlyCapture v2.13.3.61 x64
+https://flir.app.boxcn.net/v/Flycapture2SDK/file/447621421411
+
+OpenCV & OpenCV Contrib v3.7.5
+https://github.com/opencv/opencv/tree/3.4.7
+https://github.com/opencv/opencv_contrib/tree/3.4.7
+* 버전 통일에 유의할 것
