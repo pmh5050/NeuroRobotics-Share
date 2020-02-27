@@ -32,8 +32,10 @@ UCameraComponent::UCameraComponent(ECameraInc CameraInc, int Id)
 			}
 
 			break;
+		case ECameraInc::Sony:
+			// falls through
 		default:
-
+			CameraHandler.open(Id);
 			break;
 	}
 
@@ -44,16 +46,19 @@ UCameraComponent::~UCameraComponent()
 {
 	switch (Inc)
 	{
-		case PointGrey:
-			FError = FCamera.StopCapture();
-			if (FError != FlyCapture2::PGRERROR_OK)
-			{
-				// This may fail when the camera was removed, so don't show an error message
-			}
-			FCamera.Disconnect();
-			break;
-		default:
-			break;
+	case ECameraInc::PointGrey:
+		FError = FCamera.StopCapture();
+		if (FError != FlyCapture2::PGRERROR_OK)
+		{
+			// This may fail when the camera was removed, so don't show an error message
+		}
+		FCamera.Disconnect();
+		break;
+	case ECameraInc::Sony:
+		// falls through
+	default:
+		CameraHandler.release();
+		break;
 	}
 
 }
@@ -66,18 +71,22 @@ void UCameraComponent::UpdateFrame()
 
 	switch (Inc)
 	{
-		case PointGrey:
-			FError = FCamera.RetrieveBuffer(&FImage);
-			if (FError != FlyCapture2::PGRERROR_OK)
-			{
-				std::cout << "Capture error!" << std::endl;
-			}
-			FImage.Convert(FlyCapture2::PIXEL_FORMAT_BGR, &ConvertedImage);
-			RowBytes = (double)ConvertedImage.GetReceivedDataSize() / (double)ConvertedImage.GetRows();
-			Frame = cv::Mat(ConvertedImage.GetRows(), ConvertedImage.GetCols(), CV_8UC3, ConvertedImage.GetData(), RowBytes).clone();
-			break;
-		default:
-			break;
+	case ECameraInc::PointGrey:
+		FError = FCamera.RetrieveBuffer(&FImage);
+		if (FError != FlyCapture2::PGRERROR_OK)
+		{
+			std::cout << "Capture error!" << std::endl;
+		}
+		FImage.Convert(FlyCapture2::PIXEL_FORMAT_BGR, &ConvertedImage);
+		RowBytes = (double)ConvertedImage.GetReceivedDataSize() / (double)ConvertedImage.GetRows();
+		Frame = cv::Mat(ConvertedImage.GetRows(), ConvertedImage.GetCols(), CV_8UC3, ConvertedImage.GetData(), RowBytes).clone();
+		break;
+	case ECameraInc::Sony:
+		// falls through
+	default:
+		CameraHandler.read(Frame);
+		Frame = Frame.clone();
+		break;
 	}
 
 }

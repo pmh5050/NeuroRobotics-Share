@@ -7,7 +7,7 @@
 
 enum ECameraInc
 {
-	PointGrey, Common
+	PointGrey, Sony, Common
 };
 
 class UCameraComponent
@@ -30,6 +30,8 @@ private:
 	FlyCapture2::Image ConvertedImage;
 	FlyCapture2::BusManager FBusManager;
 	FlyCapture2::PGRGuid FPGRGuid;
+
+	VideoCapture CameraHandler; // OpenCV Web Camera handler
 
 	ECameraInc Inc; // 제조사 종류
 

@@ -24,10 +24,10 @@ namespace
 int main(int argc, char *argv[]) 
 {
 	int SquaresX = 7; // 가로방향 마커 갯수
-	int SquaresY = 9; // 세로방향 마터 갯수
+	int SquaresY = 7; // 세로방향 마터 갯수
 	int SquareLength = 300; // 검은색 테두리 포함한 정사각형의 한변 길이, 픽셀단위
 	int MarkerLength = 150; // 마커 한 변의 길이, 픽셀단위
-	int DictionaryId = 2; // 출력 마커의 종류
+	int DictionaryId = 6; // 출력 마커의 종류
 	int Margins = 0; // ChArUco board와 A4용지 사이의 흰색 여백 크기, 픽셀단위
 	int BorderBits = 1; // 검은색 테두리 크기
 	bool bShowImage = true; // 생성한 Checkerboard를 보여줄 지 유무
