@@ -8,9 +8,9 @@ using namespace std;
 
 int main()
 {
-	UCameraComponent CameraComponent(ECameraInc::PointGrey, 0); // 0번째 Point Grey Camera Handler
-	UCheckerboardComponent CheckerboardComponent(7, 7, 0.0214286f, 0.010714286f, 2);
-	UCalibrationComponent::UpdateCalibrationInfo(&CameraComponent, "PointGrey.xml", &CheckerboardComponent);
+	UCameraComponent CameraComponent(ECameraInc::PointGrey, 1); // 0번째 Point Grey Camera Handler
+	UCheckerboardComponent CheckerboardComponent(7, 7, 0.03f, 0.015f, 6);
+	UCalibrationComponent::UpdateCalibrationInfo(&CameraComponent, "PointGreyIR.xml", &CheckerboardComponent);
 
 	return 0;
 

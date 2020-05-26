@@ -2,13 +2,12 @@
 
 #include "VisionEngine.h"
 #include "FlyCapture2.h"
-#include "librealsense2/rs.hpp"
 
 #include <iostream>
 
 enum ECameraInc
 {
-	PointGrey, Sony, RealSense, Common
+	PointGrey, Sony, Common
 };
 
 class UCameraComponent
@@ -18,10 +17,20 @@ public:
 	UCameraComponent(ECameraInc CameraInc, int Id);
 	/** 생성한 CameraComponent를 반납합니다. */
 	~UCameraComponent();
+	/** File name을 입력받아 카메라의 내부 파라미터 및 왜곡 계수를 설정합니다 */
+	void ReadCameraParameters(std::string FileName);
 	/** CameraComponent로부터 현재 Frame을 Update 합니다. */
 	void UpdateFrame();
 	/** 현재 Frame을 반환합니다. */
 	Mat GetFrame();
+	/** 내부 파라미터를 반환합니다. */
+	Mat GetIntrinsicParams();
+	/** 왜곡 계수를 반환합니다. */
+	Mat GetDistortionParams();
+	/** 초점 거리를 반환합니다. */
+	FVector2D GetFocalLength();
+	/** 주점을 반환합니다. */
+	FVector2D GetPrincipalPoint();
 
 private:
 	FlyCapture2::Error FError;
@@ -32,13 +41,13 @@ private:
 	FlyCapture2::BusManager FBusManager;
 	FlyCapture2::PGRGuid FPGRGuid;
 
-	rs2::pipeline Pipe;
-	rs2::config Config;
-	rs2::frameset RealSenseFrames;
-	rs2::frame RealSenseColorFrame;
-	rs2::frame RealSenseIRFrame;
-
 	VideoCapture CameraHandler; // OpenCV Web Camera handler
+
+	Mat IntrinsicParams; // 내부 파라미터
+	Mat DistortionParams; // 왜곡 계수
+
+	FVector2D FocalLength; // 초점 거리
+	FVector2D PrincipalPoint; // 주점
 
 	ECameraInc Inc; // 제조사 종류
 

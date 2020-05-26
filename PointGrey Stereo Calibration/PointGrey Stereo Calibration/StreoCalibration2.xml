@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<opencv_storage>
+<calibration_time>"Tue May 26 21:00:47 2020"</calibration_time>
+<camera_matrix1 type_id="opencv-matrix">
+  <rows>3</rows>
+  <cols>3</cols>
+  <dt>d</dt>
+  <data>
+    2.8543852356792145e+03 0. 6.6227374134282536e+02 0.
+    2.8554130902035572e+03 5.4082971680397748e+02 0. 0. 1.</data></camera_matrix1>
+<distortion_coefficients1 type_id="opencv-matrix">
+  <rows>1</rows>
+  <cols>5</cols>
+  <dt>d</dt>
+  <data>
+    8.3006665340640037e-02 -4.6818150704795531e+00
+    9.5467985546788432e-03 -2.0126220226772918e-03
+    1.1381690865049717e+02</data></distortion_coefficients1>
+<camera_matrix2 type_id="opencv-matrix">
+  <rows>3</rows>
+  <cols>3</cols>
+  <dt>d</dt>
+  <data>
+    2.1630513929169724e+03 0. 6.0114730236255707e+02 0.
+    2.1668955651583660e+03 5.8754859630481724e+02 0. 0. 1.</data></camera_matrix2>
+<distortion_coefficients2 type_id="opencv-matrix">
+  <rows>1</rows>
+  <cols>5</cols>
+  <dt>d</dt>
+  <data>
+    -2.3701847907625081e-02 7.8477928718254564e-01
+    1.1849471015935392e-02 -7.5394502384000762e-03
+    -5.4015104515376606e+00</data></distortion_coefficients2>
+<rot type_id="opencv-matrix">
+  <rows>3</rows>
+  <cols>3</cols>
+  <dt>d</dt>
+  <data>
+    9.8106290817475605e-01 1.2575364449479874e-02 1.9328070367383524e-01
+    -8.0470725516564538e-03 9.9967484983996413e-01
+    -2.4195851313678546e-02 -1.9352213007053878e-01
+    2.2182308410262898e-02 9.8084511028324617e-01</data></rot>
+<trs type_id="opencv-matrix">
+  <rows>3</rows>
+  <cols>1</cols>
+  <dt>d</dt>
+  <data>
+    -1.9089188294441067e-01 2.5680158649813304e-03
+    1.4774788095229280e-02</data></trs>
+<avg_reprojection_error>3.0634962249255482e-01</avg_reprojection_error>
+</opencv_storage>

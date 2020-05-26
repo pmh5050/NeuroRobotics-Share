@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{0da7f873-4933-4b67-a80a-bb79923e81f2}</ProjectGuid>
+    <ProjectGuid>{18a13cbb-600b-4d4a-9700-2ce93c9ef8eb}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>PointGrey_Calibration</RootNamespace>
+    <RootNamespace>PointGrey_Stereo_Calibration</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -154,6 +154,9 @@
     <ClInclude Include="CalibrationComponent.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="CheckerboardComponent.h" />
+    <ClInclude Include="Vector.h" />
+    <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="Vector4.h" />
     <ClInclude Include="VisionEngine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

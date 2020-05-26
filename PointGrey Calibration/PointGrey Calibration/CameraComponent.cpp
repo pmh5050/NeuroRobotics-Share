@@ -1,9 +1,13 @@
 #include "CameraComponent.h"
 
+#define RS_WIDTH 640
+#define RS_HEIGHT 480
 /** Camera 회사 종류와 Id를 입력받아 CameraComponent를 생성합니다. */
 UCameraComponent::UCameraComponent(ECameraInc CameraInc, int Id)
 {
 	Inc = CameraInc;
+
+	int DropFrameCount = 0;
 
 	switch (CameraInc)
 	{
@@ -32,6 +36,15 @@ UCameraComponent::UCameraComponent(ECameraInc CameraInc, int Id)
 			}
 
 			break;
+		case ECameraInc::RealSense:
+			Config.enable_stream(RS2_STREAM_COLOR, RS_WIDTH, RS_HEIGHT, RS2_FORMAT_BGR8, 30); // To resize solution, change (640, 480) to (Width, Height)
+			Pipe.start(Config);
+			// Drop several first frames  to let auto-exposure stabilize
+			for (DropFrameCount = 0; DropFrameCount < 30; DropFrameCount++)
+			{
+				RealSenseFrames = Pipe.wait_for_frames();
+			}
+			break;
 		case ECameraInc::Sony:
 			// falls through
 		default:
@@ -53,6 +66,9 @@ UCameraComponent::~UCameraComponent()
 			// This may fail when the camera was removed, so don't show an error message
 		}
 		FCamera.Disconnect();
+		break;
+	case ECameraInc::RealSense:
+		Pipe.stop();
 		break;
 	case ECameraInc::Sony:
 		// falls through
@@ -81,6 +97,13 @@ void UCameraComponent::UpdateFrame()
 		RowBytes = (double)ConvertedImage.GetReceivedDataSize() / (double)ConvertedImage.GetRows();
 		Frame = cv::Mat(ConvertedImage.GetRows(), ConvertedImage.GetCols(), CV_8UC3, ConvertedImage.GetData(), RowBytes).clone();
 		break;
+	case ECameraInc::RealSense:
+		RealSenseFrames = Pipe.wait_for_frames();
+		RealSenseColorFrame = RealSenseFrames.get_color_frame();
+		Frame = Mat(Size(RS_WIDTH, RS_HEIGHT), CV_8UC3, (void*)RealSenseColorFrame.get_data(), Mat::AUTO_STEP);
+		Frame = Frame.clone();
+		break;
+
 	case ECameraInc::Sony:
 		// falls through
 	default:
